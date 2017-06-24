@@ -1,18 +1,28 @@
 {
-    "name": "roundpartner/yii-extended-logging",
-    "description": "Yii Log Extension",
-    "require-dev": {
-        "yiisoft/yii": "^1.1",
-        "squizlabs/php_codesniffer": "2.*",
-        "phpunit/phpunit": "^4.8"
-    },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Tom Lorentsen",
-            "email": "tom@thomaslorentsen.co.uk"
-        }
-    ],
-    "minimum-stability": "stable",
-    "require": {}
+  "name": "roundpartner/yii-extended-logging",
+  "description": "Yii Log Extension",
+  "require-dev": {
+    "yiisoft/yii": "^1.1",
+    "squizlabs/php_codesniffer": "2.*",
+    "phpunit/phpunit": "^4.8"
+  },
+  "autoload": {
+    "psr-4": {
+      "RoundPartner\\YiiLogger\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "RoundPartner\\Test\\": "tests/"
+    }
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Tom Lorentsen",
+      "email": "tom@thomaslorentsen.co.uk"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {}
 }
