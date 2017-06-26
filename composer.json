@@ -16,6 +16,11 @@
       "RoundPartner\\Test\\": "tests/"
     }
   },
+  "scripts": {
+    "post-install-cmd": [
+      "mkdir -p protected/runtime"
+    ]
+  },
   "license": "MIT",
   "authors": [
     {

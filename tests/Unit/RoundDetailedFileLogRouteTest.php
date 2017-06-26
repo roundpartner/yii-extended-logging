@@ -14,7 +14,7 @@ class RoundDetailedFileLogRouteTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->logRoute = new RoundDetailedFileLogRoute();
-        $this->logRoute->setLogPath('/tmp/');
+        $this->logRoute->setLogPath(BASE_PATH . '/protected/runtime');
     }
 
     public function testCreateInstance()
