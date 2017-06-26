@@ -19,6 +19,9 @@
   "scripts": {
     "post-install-cmd": [
       "mkdir -p protected/runtime"
+    ],
+    "post-update-cmd": [
+      "mkdir -p protected/runtime"
     ]
   },
   "license": "MIT",
