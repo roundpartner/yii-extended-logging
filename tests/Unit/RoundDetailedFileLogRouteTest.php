@@ -35,7 +35,6 @@ class RoundDetailedFileLogRouteTest extends \PHPUnit_Framework_TestCase
 
         $logger = new \CLogger();
         $logger->log('hello world');
-
         $this->logRoute->collectLogs($logger, true);
     }
 }
