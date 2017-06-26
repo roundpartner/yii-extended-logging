@@ -4,14 +4,16 @@ namespace RoundPartner\YiiLogger;
 
 use \Yii as Yii;
 
-class RoundFileLogRoute extends RoundDetailedFileLogRoute {
+class RoundFileLogRoute extends \CFileLogRoute
+{
 
     /**
      * Saves log messages in files.
      *
      * @param array $logs list of log messages
      */
-    protected function processLogs($logs) {
+    protected function processLogs($logs)
+    {
         foreach ($logs as $index => $log) {
             $message = '';
             if (Yii::app()->user->id) {
@@ -29,4 +31,19 @@ class RoundFileLogRoute extends RoundDetailedFileLogRoute {
         parent::processLogs($logs);
     }
 
+    /**
+     * Formats a log message given different fields.
+     *
+     * @param string $message message content
+     * @param integer $level message level
+     * @param string $category message category
+     * @param integer $time timestamp
+     *
+     * @return string formatted message
+     */
+    protected function formatLogMessage($message, $level, $category, $time)
+    {
+        $message = "[".Yii::app()->request->getUserHostAddress()."] ".$message;
+        return parent::formatLogMessage($message, $level, $category, $time);
+    }
 }

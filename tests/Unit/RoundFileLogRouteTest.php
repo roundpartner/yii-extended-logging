@@ -57,5 +57,4 @@ class RoundFileLogRouteTest extends \PHPUnit_Framework_TestCase
     {
         return Yii::app();
     }
-
 }
