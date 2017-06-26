@@ -1,8 +1,9 @@
 <?php
 
-namespace RoundPartner\Test;
+namespace RoundPartner\Test\Unit;
 
 use RoundPartner\YiiLogger\RoundDetailedFileLogRoute;
+use \Yii as Yii;
 
 class RoundDetailedFileLogRouteTest extends \PHPUnit_Framework_TestCase
 {
@@ -13,6 +14,9 @@ class RoundDetailedFileLogRouteTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
+        if (!Yii::app()) {
+            Yii::createConsoleApplication([]);
+        }
         $this->logRoute = new RoundDetailedFileLogRoute();
         $this->logRoute->setLogPath(BASE_PATH . '/protected/runtime');
     }
@@ -26,15 +30,14 @@ class RoundDetailedFileLogRouteTest extends \PHPUnit_Framework_TestCase
     {
         $logger = new \CLogger();
         $this->logRoute->collectLogs($logger, true);
+        $this->assertEmpty($this->logRoute->logs);
     }
 
     public function testBasicLoggerWithOneLog()
     {
-
-        \Yii::createConsoleApplication([]);
-
         $logger = new \CLogger();
         $logger->log('hello world');
         $this->logRoute->collectLogs($logger, true);
+        $this->assertEmpty($this->logRoute->logs);
     }
 }

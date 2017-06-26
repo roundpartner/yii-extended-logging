@@ -1,8 +1,9 @@
 <?php
 
-namespace RoundPartner\Test;
+namespace RoundPartner\Test\Unit;
 
 use RoundPartner\YiiLogger\BasicLogger;
+use \Yii as Yii;
 
 class BasicLoggerTest extends \PHPUnit_Framework_TestCase
 {
@@ -13,6 +14,9 @@ class BasicLoggerTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
+        if (!Yii::app()) {
+            Yii::createConsoleApplication([]);
+        }
         $this->logRoute = new BasicLogger();
         $this->logRoute->setLogPath(BASE_PATH . '/protected/runtime');
     }
@@ -26,6 +30,7 @@ class BasicLoggerTest extends \PHPUnit_Framework_TestCase
     {
         $logger = new \CLogger();
         $this->logRoute->collectLogs($logger, true);
+        $this->assertEmpty($this->logRoute->logs);
     }
 
     public function testBasicLoggerWithOneLog()
@@ -34,5 +39,6 @@ class BasicLoggerTest extends \PHPUnit_Framework_TestCase
         $logger->log('hello world');
 
         $this->logRoute->collectLogs($logger, true);
+        $this->assertEmpty($this->logRoute->logs);
     }
 }
