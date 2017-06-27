@@ -1,8 +1,6 @@
 <?php
 
-namespace RoundPartner\Test\Mock;
-
-class User implements \IApplicationComponent
+class User implements IApplicationComponent
 {
     protected $initialized = false;
 

@@ -1,16 +1,18 @@
 <?php
 
-namespace RoundPartner\Test\Unit;
+require_once BASE_PATH . '/src/BasicLogger.php';
 
-use RoundPartner\YiiLogger\BasicLogger;
-use \Yii as Yii;
-
-class BasicLoggerTest extends \PHPUnit_Framework_TestCase
+class BasicLoggerTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var BasicLogger
      */
     protected $logRoute;
+
+    /**
+     * @var CLogger
+     */
+    protected $logger;
 
     public function setUp()
     {
@@ -19,26 +21,26 @@ class BasicLoggerTest extends \PHPUnit_Framework_TestCase
         }
         $this->logRoute = new BasicLogger();
         $this->logRoute->setLogPath(BASE_PATH . '/protected/runtime');
+
+        $this->logger = new CLogger();
     }
 
     public function testCreateInstance()
     {
-        $this->assertInstanceOf('\RoundPartner\YiiLogger\BasicLogger', $this->logRoute);
+        $this->assertInstanceOf('BasicLogger', $this->logRoute);
     }
 
     public function testBasicLoggerWithNoLog()
     {
-        $logger = new \CLogger();
-        $this->logRoute->collectLogs($logger, true);
+        $this->logRoute->collectLogs($this->logger, true);
         $this->assertEmpty($this->logRoute->logs);
     }
 
     public function testBasicLoggerWithOneLog()
     {
-        $logger = new \CLogger();
-        $logger->log('hello world');
+        $this->logger->log('hello world');
 
-        $this->logRoute->collectLogs($logger, true);
+        $this->logRoute->collectLogs($this->logger, true);
         $this->assertEmpty($this->logRoute->logs);
     }
 }
