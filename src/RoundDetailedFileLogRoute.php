@@ -1,10 +1,6 @@
 <?php
 
-namespace RoundPartner\YiiLogger;
-
-use \Yii as Yii;
-
-class RoundDetailedFileLogRoute extends \CFileLogRoute
+class RoundDetailedFileLogRoute extends CFileLogRoute
 {
 
     /**

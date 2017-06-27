@@ -1,8 +1,6 @@
 <?php
 
-namespace RoundPartner\YiiLogger;
-
-class BasicLogger extends \CFileLogRoute
+class BasicLogger extends CFileLogRoute
 {
 
 }
